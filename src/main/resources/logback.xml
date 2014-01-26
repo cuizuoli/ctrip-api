@@ -93,7 +93,8 @@
 	</appender>
 
 	<logger name="org.springframework" level="DEBUG"/>
-	<logger name="com.weibo" level="DEBUG"/>
+	<logger name="org.springframework.ws" level="DEBUG"/>
+	<logger name="com.ctrip" level="DEBUG"/>
 
 	<root level="DEBUG">
 		<appender-ref ref="CONSOLE"/>

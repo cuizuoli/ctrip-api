@@ -2,11 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
 	xmlns:sws="http://www.springframework.org/schema/web-services"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.2.xsd
+	http://www.springframework.org/schema/oxm
+	http://www.springframework.org/schema/oxm/spring-oxm-3.2.xsd
 	http://www.springframework.org/schema/web-services
 	http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
 
@@ -16,17 +22,12 @@
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
 		<constructor-arg ref="messageFactory"></constructor-arg>
-		<property name="messageSender">
-			<bean class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
-				<property name="credentials">
-					<bean class="org.apache.http.auth.UsernamePasswordCredentials">
-						<constructor-arg value="john:secret"></constructor-arg>
-					</bean>
-				</property>
-			</bean>
-		</property>
-		<property name="defaultUri" value="http://localhost/ws/UserService"></property>
+		<property name="defaultUri" value="http://ctrip.com/"></property>
 	</bean>
+
+	<oxm:jaxb2-marshaller id="jaxb2Marshaller">
+		<oxm:class-to-be-bound name="com.ctrip.model.FlightSearch"/>
+	</oxm:jaxb2-marshaller>
 
 	<context:component-scan base-package="com.ctrip">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
