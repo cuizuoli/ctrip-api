@@ -21,13 +21,32 @@
 	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"></bean>
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
-		<constructor-arg ref="messageFactory"></constructor-arg>
-		<property name="defaultUri" value="http://ctrip.com/"></property>
+		<constructor-arg ref="messageFactory"/>
+		<property name="messageSender">
+			<bean class="org.springframework.ws.transport.http.HttpUrlConnectionMessageSender">
+				<property name="acceptGzipEncoding" value="true"/>
+			</bean>
+		</property>
+		<property name="defaultUri" value="http://ctrip.com/"/>
 	</bean>
 
+	<bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>com.ctrip.model.FlightSearch</value>
+				<value>com.ctrip.model.SoapRequest</value>
+				<value>com.ctrip.model.SoapResponse</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 
 	<oxm:jaxb2-marshaller id="jaxb2Marshaller">
 		<oxm:class-to-be-bound name="com.ctrip.model.FlightSearch"/>
+		<oxm:class-to-be-bound name="com.ctrip.model.SoapRequest"/>
+		<oxm:class-to-be-bound name="com.ctrip.model.SoapResponse"/>
 	</oxm:jaxb2-marshaller>
+	 -->
 
 	<context:component-scan base-package="com.ctrip">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
