@@ -7,7 +7,6 @@
 
 package com.ctrip.model;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,17 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "RequestResponse")
 public class SoapResponse {
-	private String xmlns = "http://ctrip.com/";
 	private String response;
-
-	@XmlAttribute
-	public String getXmlns() {
-		return xmlns;
-	}
-
-	public void setXmlns(String xmlns) {
-		this.xmlns = xmlns;
-	}
 
 	@XmlElement(name = "RequestResult")
 	public String getResponse() {

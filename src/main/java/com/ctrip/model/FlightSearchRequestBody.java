@@ -1,8 +1,8 @@
 /*
- * @(#)FlightSearch.java $version 2014年1月26日
+ * @(#)FlightSearchRequestXml.java $version 2014年4月18日
  *
- * Copyright 2014 NHN China. All rights Reserved.
- * NHN China PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * Copyright 2014 DaLian Software. All rights Reserved.
+ * DaLian Software PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
 package com.ctrip.model;
@@ -11,13 +11,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * nhn ctrip-api
- * com.ctrip.model.FlightSearch.java
- * @author CN40101
- * @date 2014年1月26日
+ * DaLian Software ctrip-api
+ * com.ctrip.model.FlightSearchRequestXml.java
+ * @author cuizuoli
+ * @date 2014年4月18日
  */
 @XmlRootElement(name = "Request")
-public class FlightSearch {
+public class FlightSearchRequestBody {
 	private Header header;
 	private FlightSearchRequest flightSearchRequest;
 
